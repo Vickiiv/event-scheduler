@@ -9,24 +9,29 @@ function Login() {
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
 
-    const response = await fetch("http://localhost:3001/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!response.ok) {
-      setError("E-Mail oder Passwort ist falsch.");
-      return;
+      if (!response.ok) {
+        setError("E-Mail oder Passwort ist falsch.");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+      const token = data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/");
+    } catch {
+      setError("Server nicht erreichbar. Bitte später erneut versuchen");
     }
-
-    const data = await response.json();
-    console.log(data);
-    const token = data.token;
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-    navigate("/");
   };
 
   return (
