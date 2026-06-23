@@ -5,6 +5,8 @@ import Events from "./Pages/Events";
 import EventDetails from "./Pages/EventDetails";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import CreateEvent from "./Pages/CreateEvent";
 
 function App() {
   return (
@@ -13,6 +15,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route
+          path="/events/new"
+          element={
+            <ProtectedRoute>
+              <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
