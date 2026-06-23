@@ -30,7 +30,7 @@ function Login() {
       localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/");
     } catch {
-      setError("Server nicht erreichbar. Bitte später erneut versuchen");
+      setError("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
   };
 
