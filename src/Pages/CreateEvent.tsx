@@ -8,7 +8,7 @@ function CreateEvent() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -20,7 +20,7 @@ function CreateEvent() {
       <input
         id="title"
         type="text"
-        value="title"
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
@@ -28,7 +28,7 @@ function CreateEvent() {
       <input
         id="description"
         type="text"
-        value="description"
+        value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
 
@@ -36,7 +36,7 @@ function CreateEvent() {
       <input
         id="date"
         type="date"
-        value="date"
+        value={date}
         onChange={(e) => setDate(e.target.value)}
       />
 
@@ -44,7 +44,7 @@ function CreateEvent() {
       <input
         id="location"
         type="text"
-        value="loaction"
+        value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
 
@@ -52,7 +52,7 @@ function CreateEvent() {
       <input
         id="latitude"
         type="number"
-        value="latitude"
+        value={latitude}
         onChange={(e) => setLatitude(e.target.value)}
       />
 
@@ -60,7 +60,7 @@ function CreateEvent() {
       <input
         id="longitude"
         type="number"
-        value="longitude"
+        value={longitude}
         onChange={(e) => setLongitude(e.target.value)}
       />
 
