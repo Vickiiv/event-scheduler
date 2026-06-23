@@ -14,13 +14,13 @@ function EventList() {
     ladeEvents();
   }, []);
   return (
-    <div className="p-6">
+    <div className="flex flex-col p-6">
       <h1 className="text-2xl font-bold mb-4">Events</h1>
       <ul className="space-y-3">
         {events.map((event) => (
-          <li key={event.id} className="border rounded-lg p-4">
+          <li key={event.id} className="border rounded-lg p-6">
             <h2 className="font-semibold">{event.title}</h2>
-            <p className="text-gray-600">{event.location}</p>
+            <p className="text-gray-500">{event.location}</p>
           </li>
         ))}
       </ul>
