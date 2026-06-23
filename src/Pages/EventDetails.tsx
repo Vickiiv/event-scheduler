@@ -44,7 +44,10 @@ function EventDetails() {
         <p>{event.description}</p>
         <p>{event.location}</p>
         {user && user.id === event.organizerId && (
-          <button onClick={handleDelete}>Löschen</button>
+          <div>
+            <Link to={`/events/${event.id}/edit`}>Bearbeiten</Link>
+            <button onClick={handleDelete}>Löschen</button>
+          </div>
         )}
       </div>
       <Link
