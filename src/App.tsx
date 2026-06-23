@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router";
 import Home from "./Pages/Home";
 import Navbar from "./components/Navbar";
-import Event from "./Pages/Events";
+import Events from "./Pages/Events";
+import EventDetails from "./Pages/EventDetails";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Event />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/events/:id" element={<EventDetails />} />
       </Routes>
     </>
   );
