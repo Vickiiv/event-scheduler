@@ -8,8 +8,28 @@ function CreateEvent() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("http://localhost:3001/api/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        date,
+        location,
+        latitude: Number(latitude),
+        longitude: Number(longitude),
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
