@@ -19,6 +19,7 @@ function Login() {
     console.log(data);
     const token = data.token;
     localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(data.user));
     navigate("/");
   };
 
