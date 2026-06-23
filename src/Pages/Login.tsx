@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -15,6 +16,11 @@ function Login() {
       body: JSON.stringify({ email, password }),
     });
 
+    if (!response.ok) {
+      setError("E-Mail oder Passwort ist falsch.");
+      return;
+    }
+
     const data = await response.json();
     console.log(data);
     const token = data.token;
@@ -25,6 +31,7 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && <p>{error}</p>}
       <h1>Login</h1>
       <label htmlFor="email">E-mail</label>
       <input
