@@ -4,26 +4,39 @@ import { useNavigate } from "react-router";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
 
-    const response = await fetch("http://localhost:3001/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch("http://localhost:3001/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      if (!response.ok) {
+        setError(
+          "Registrierung fehlgeschlagen. E-Mail evtl. schon vergeben oder Passwort zu kurz (min. 8 Zeichen).",
+        );
+        return;
+      }
 
-    const data = await response.json();
-    console.log(data);
-    setEmail("");
-    setPassword("");
-    navigate("/login");
+      const data = await response.json();
+      console.log(data);
+      setEmail("");
+      setPassword("");
+      navigate("/login");
+    } catch {
+      setError("Server nicht erreichbar. Bitte später erneut versuchen.");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && <p>{error}</p>}
       <h1>Konto erstellen</h1>
       <p>Jetzt registieren und Events entdecken</p>
 

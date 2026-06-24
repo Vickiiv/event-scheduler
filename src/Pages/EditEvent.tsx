@@ -11,6 +11,7 @@ function EditEvent() {
   const [location, setLocation] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const ladeEvent = async () => {
@@ -30,32 +31,42 @@ function EditEvent() {
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+    setError("");
 
-    const response = await fetch(`http://localhost:3001/api/events/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        date,
-        location,
-        latitude: Number(latitude),
-        longitude: Number(longitude),
-      }),
-    });
+    try {
+      const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          date,
+          location,
+          latitude: Number(latitude),
+          longitude: Number(longitude),
+        }),
+      });
 
-    const data = await response.json();
-    console.log(data);
-    navigate(`/events/${id}`);
+      if (!response.ok) {
+        setError("Ungültige Eingabe");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+      navigate(`/events/${id}`);
+    } catch {
+      setError("Server nicht erreichbar, Bitte später erneut versuchen");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Event bearbeiten</h1>
-
+      {error && <p>{error}</p>}
       <label htmlFor="title">Titel</label>
       <input
         id="title"
