@@ -35,29 +35,57 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {error && <p>{error}</p>}
-      <h1>Konto erstellen</h1>
-      <p>Jetzt registieren und Events entdecken</p>
+    <div className=" text-2xl m-100 flex items-center justify-center p-4">
+      <form
+        onSubmit={handleSubmit}
+        className=" flex flex-col bg-white rounded-2xl w-full max-w-xl shadow-2xl"
+      >
+        <h1 className="font-bold text-2xl py-2 text-center ">
+          Konto erstellen
+        </h1>
+        {error && (
+          <p className="text-center text-red-800 font-bold text-xl">{error}</p>
+        )}
+        <p className="text-center text-gray-500 text-xl">
+          Jetzt registieren und Events erstellen
+        </p>
 
-      <label htmlFor="email">E-mail</label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <label
+          className="mx-5 mb-1 font-bold text-2xl pl-2 pt-2"
+          htmlFor="email"
+        >
+          E-mail
+        </label>
+        <input
+          className="focus:outline-2 focus:outline-blue-700 bg-gray-50 border-2 rounded-xl px-2 py-3 mx-5 mb-6"
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <label htmlFor="password">Passwort</label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <label
+          className="mx-5 mb-1 font-bold text-2xl pl-2 pt-2"
+          htmlFor="password"
+        >
+          Passwort
+        </label>
+        <input
+          className="focus:outline-2 focus:outline-blue-700 bg-gray-50 border-2 rounded-xl px-2 py-3 mx-5 mb-6"
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button type="submit">Konto erstellen</button>
-    </form>
+        <button
+          className="font-bold w-full sm:w-auto bg-blue-700 text-white py-2 mx-3 rounded-2xl mt-2 mb-6 hover:bg-blue-900 cursor-pointer"
+          type="submit"
+        >
+          Konto erstellen
+        </button>
+      </form>
+    </div>
   );
 }
 
