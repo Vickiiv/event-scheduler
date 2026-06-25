@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAsyncError, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 function CreateEvent() {
   const [title, setTitle] = useState("");
