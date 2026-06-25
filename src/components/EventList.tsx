@@ -15,7 +15,7 @@ function EventList() {
     ladeEvents();
   }, []);
   return (
-    <div className="text-2xl mt-30 flex flex-col p-6">
+    <div className="text-2xl  mt-30 flex flex-col p-6">
       <h1 className="text-2xl font-bold mb-4">Events</h1>
 
       <div className="grid grid-cols-3 gap-4">
