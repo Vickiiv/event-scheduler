@@ -14,13 +14,13 @@ function Home() {
       <div className="absolute inset-0 flex items-center justify-center gap-10">
         <button
           onClick={() => navigate("/events")}
-          className="bg-blue-700/80 text-white font-bold py-6 px-12 text-5xl rounded-3xl hover:bg-blue-900 cursor-pointer shadow-xl"
+          className="bg-blue-700/80 hover:bg-blue-800 text-white font-semibold py-4 px-8 text-xl rounded-2xl shadow-lg transition"
         >
           Events entdecken
         </button>
         <button
           onClick={() => navigate("/events/new")}
-          className="bg-blue-700/80 text-white font-bold py-6 px-12 text-5xl rounded-3xl hover:bg-blue-900 cursor-pointer shadow-xl"
+          className="bg-blue-700/80 hover:bg-blue-800 text-white font-semibold py-4 px-8 text-xl rounded-2xl shadow-lg transition"
         >
           Event erstellen
         </button>

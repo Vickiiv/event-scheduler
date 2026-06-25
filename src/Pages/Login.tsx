@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -35,19 +36,16 @@ function Login() {
   };
 
   return (
-    <div className=" text-2xl m-100 flex items-center justify-center p-4">
+    <div className=" text-2xl min-h-screen flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col bg-white rounded-2xl w-full max-w-xl shadow-2xl"
+        className="px-8 py-12 flex flex-col bg-white rounded-2xl w-full max-w-xl shadow-2xl"
       >
         <h1 className="font-bold text-2xl py-2 text-center ">Login</h1>
         {error && (
           <p className="text-center text-red-800 font-bold text-xl">{error}</p>
         )}
-        <label
-          className="mx-5 mb-1 font-bold text-2xl pl-2 pt-2"
-          htmlFor="email"
-        >
+        <label className="mx-5 mb-1 text-2xl pl-2 pt-2" htmlFor="email">
           E-mail
         </label>
         <input
@@ -58,10 +56,7 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label
-          className="mx-5 mb-1 font-bold text-2xl pl-2 pt-2"
-          htmlFor="password"
-        >
+        <label className="mx-5 mb-1 text-2xl pl-2 pt-2" htmlFor="password">
           Passwort
         </label>
         <input
@@ -73,11 +68,18 @@ function Login() {
         />
 
         <button
-          className="font-bold w-full sm:w-auto bg-blue-700 text-white py-2 mx-3 rounded-2xl mt-2 mb-6 hover:bg-blue-900 cursor-pointer"
+          className="font-bold w-full sm:w-auto bg-blue-700 text-white py-3 mx-3 rounded-2xl mt-2 mb-6 hover:bg-blue-900 cursor-pointer"
           type="submit"
         >
           Anmelden
         </button>
+
+        <div className="flex justify-center gap-2">
+          <p className="text-gray-500">Noch kein Konto?</p>
+          <Link to="/register" className="text-blue-700 hover:underline">
+            Registrieren
+          </Link>
+        </div>
       </form>
     </div>
   );
