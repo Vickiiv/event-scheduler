@@ -16,19 +16,19 @@ function Navbar() {
       </div>
       <nav className="flex justify-center items-center  gap-4">
         <Link
-          className="font-bold hover:text-black text-gray-600 text-xl"
+          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
           to="/"
         >
           Home
         </Link>
         <Link
-          className="font-bold hover:text-black text-gray-600 text-xl"
+          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
           to="/events"
         >
           Events
         </Link>
         <Link
-          className="font-bold hover:text-black text-gray-600 text-xl"
+          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
           to="events/new"
         >
           Event erstellen
