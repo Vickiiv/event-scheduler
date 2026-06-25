@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAsyncError, useNavigate } from "react-router";
 
 function CreateEvent() {
   const [title, setTitle] = useState("");
@@ -8,6 +9,7 @@ function CreateEvent() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,13 +40,14 @@ function CreateEvent() {
 
       const data = await response.json();
       console.log(data);
+      navigate("/events");
     } catch {
       setError("Server nicht erreichbar, Bitte später erneut versuchen.");
     }
   };
 
   return (
-    <div className=" text-2xl m-100 flex items-center justify-center p-4">
+    <div className=" text-2xl m-50 flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col bg-white rounded-2xl w-full max-w-xl shadow-2xl"
