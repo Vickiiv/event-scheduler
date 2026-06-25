@@ -34,25 +34,32 @@ function Navbar() {
           Event erstellen
         </Link>
       </nav>
-      {token ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <nav className="flex justify-center items-center  gap-2">
-          <Link
-            className="bg-blue-600 py-2 px-6 text-white rounded-2xl hover:bg-blue-900 font-bold cursor-pointer  "
-            to="/register"
+      <div className="flex justify-center items-center gap-2">
+        {token ? (
+          <button
+            className="rounded-2xl bg-blue-700 hover:bg-blue-900 cursor-pointer py-2 px-6 text-white font-bold"
+            onClick={handleLogout}
           >
-            Registieren
-          </Link>
-          <Link
-            className="bg-gray-600 py-2 px-6 text-white rounded-2xl hover:bg-gray-900 font-bold cursor-pointer  "
-            to="/login"
-          >
-            {" "}
-            Login
-          </Link>
-        </nav>
-      )}
+            Logout
+          </button>
+        ) : (
+          <nav className=" flex gap-2">
+            <Link
+              className="bg-blue-600 py-2 px-6 text-white rounded-2xl hover:bg-blue-900 font-bold cursor-pointer  "
+              to="/register"
+            >
+              Registieren
+            </Link>
+            <Link
+              className="bg-gray-600 py-2 px-6 text-white rounded-2xl hover:bg-gray-900 font-bold cursor-pointer  "
+              to="/login"
+            >
+              {" "}
+              Login
+            </Link>
+          </nav>
+        )}
+      </div>
     </div>
   );
 }
