@@ -10,7 +10,7 @@ function Navbar() {
     navigate("/login");
   };
   return (
-    <div className="text-xl py-2 flex justify-between fixed top-0 left-0 w-full backdrop-blur-2xl border-b shadow-md  bg-white/50 px-6">
+    <div className="z-50 text-xl py-2 flex justify-between fixed top-0 left-0 w-full backdrop-blur-2xl border-b shadow-md  bg-white/50 px-6">
       <div>
         <img className="py-2 px-2 w-22" src="/assets/logo.png" alt="logo" />
       </div>
