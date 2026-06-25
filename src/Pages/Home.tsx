@@ -1,7 +1,12 @@
+import EventList from "../components/EventList";
+
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <div>
+        <img></img>
+      </div>
+      <EventList />
     </div>
   );
 }

@@ -15,22 +15,26 @@ function EventList() {
     ladeEvents();
   }, []);
   return (
-    <div className="flex flex-col p-6">
+    <div className="text-2xl mt-30 flex flex-col p-6">
       <h1 className="text-2xl font-bold mb-4">Events</h1>
-      <ul className="space-y-3">
+
+      <div className="grid grid-cols-3 gap-4">
         {events.map((event) => (
-          <li key={event.id} className="flex flex-col border rounded-lg p-6">
+          <div
+            key={event.id}
+            className="flex flex-col border rounded-lg p-6 shadow-xl"
+          >
             <h2 className="font-semibold">{event.title}</h2>
             <p className="text-gray-500">{event.location}</p>
             <Link
-              className="bg-blue-600 p-2 text-white rounded text-center cursor-pointer  hover:bg-blue-800"
+              className="bg-blue-600 p-2 mt-20 text-white rounded-2xl text-center cursor-pointer  hover:bg-blue-800"
               to={`/events/${event.id}`}
             >
               Details
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
