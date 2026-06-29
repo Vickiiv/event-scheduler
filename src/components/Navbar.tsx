@@ -1,67 +1,151 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 
 function Navbar() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    setMenuOpen(false);
     navigate("/login");
   };
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const linkClass =
+    "font-bold text-gray-600 hover:text-black focus:text-blue-700";
+
   return (
-    <div className=" text-base md:text-lg font-medium z-50 py-2 flex justify-between fixed top-0 left-0 w-full backdrop-blur-2xl border-b shadow-md  bg-white/50 px-6">
-      <div>
-        <img className="py-2 px-2 w-22" src="/assets/logo.png" alt="logo" />
+    <header className="fixed top-0 left-0 z-50 w-full border-b bg-white/50 shadow-md backdrop-blur-2xl">
+      <div className="flex items-center justify-between px-4 py-2 md:px-6">
+        <Link to="/" onClick={closeMenu}>
+          <img className="w-16 md:w-20" src="/assets/logo.png" alt="logo" />
+        </Link>
+
+        <nav className="hidden items-center gap-4 text-lg lg:gap-6 lg:text-2xl md:flex">
+          <Link className={linkClass} to="/">
+            Home
+          </Link>
+          <Link className={linkClass} to="/events">
+            Events
+          </Link>
+          <Link className={linkClass} to="/events/new">
+            Event erstellen
+          </Link>
+        </nav>
+
+        <div className="hidden items-center gap-2 md:flex">
+          {token ? (
+            <button
+              className="cursor-pointer rounded-2xl bg-blue-700 px-6 py-2 font-bold text-white hover:bg-blue-900"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                className="rounded-2xl bg-blue-600 px-6 py-2 font-bold text-white hover:bg-blue-900"
+                to="/register"
+              >
+                Registrieren
+              </Link>
+              <Link
+                className="rounded-2xl bg-gray-600 px-6 py-2 font-bold text-white hover:bg-gray-900"
+                to="/login"
+              >
+                Login
+              </Link>
+            </>
+          )}
+        </div>
+
+        <button
+          className="flex cursor-pointer items-center justify-center rounded-lg p-2 md:hidden"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label="Menü umschalten"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? (
+            <svg
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          )}
+        </button>
       </div>
-      <nav className="flex justify-center items-center  gap-4">
-        <Link
-          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
-          to="/"
-        >
-          Home
-        </Link>
-        <Link
-          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
-          to="/events"
-        >
-          Events
-        </Link>
-        <Link
-          className="font-bold hover:text-black text-gray-600 text-2xl focus:text-blue-700"
-          to="events/new"
-        >
-          Event erstellen
-        </Link>
-      </nav>
-      <div className="flex justify-center items-center gap-2">
-        {token ? (
-          <button
-            className="rounded-2xl bg-blue-700 hover:bg-blue-900 cursor-pointer py-2 px-6 text-white font-bold"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        ) : (
-          <nav className=" flex gap-2">
-            <Link
-              className="bg-blue-600 py-2 px-6 text-white rounded-2xl hover:bg-blue-900 font-bold cursor-pointer  "
-              to="/register"
-            >
-              Registieren
+
+      {menuOpen && (
+        <div className="flex flex-col gap-4 border-t bg-white/90 px-6 py-4 md:hidden">
+          <nav className="flex flex-col gap-3 text-lg">
+            <Link className={linkClass} to="/" onClick={closeMenu}>
+              Home
             </Link>
-            <Link
-              className="bg-gray-600 py-2 px-6 text-white rounded-2xl hover:bg-gray-900 font-bold cursor-pointer  "
-              to="/login"
-            >
-              {" "}
-              Login
+            <Link className={linkClass} to="/events" onClick={closeMenu}>
+              Events
+            </Link>
+            <Link className={linkClass} to="/events/new" onClick={closeMenu}>
+              Event erstellen
             </Link>
           </nav>
-        )}
-      </div>
-    </div>
+
+          <div className="flex flex-col gap-2">
+            {token ? (
+              <button
+                className="cursor-pointer rounded-2xl bg-blue-700 px-6 py-2 text-center font-bold text-white hover:bg-blue-900"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link
+                  className="rounded-2xl bg-blue-600 px-6 py-2 text-center font-bold text-white hover:bg-blue-900"
+                  to="/register"
+                  onClick={closeMenu}
+                >
+                  Registrieren
+                </Link>
+                <Link
+                  className="rounded-2xl bg-gray-600 px-6 py-2 text-center font-bold text-white hover:bg-gray-900"
+                  to="/login"
+                  onClick={closeMenu}
+                >
+                  Login
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
 
