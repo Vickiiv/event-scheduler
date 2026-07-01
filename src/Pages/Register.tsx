@@ -26,10 +26,11 @@ function Register() {
       }
 
       const data = await response.json();
-      console.log(data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       setEmail("");
       setPassword("");
-      navigate("/login");
+      navigate("/");
     } catch {
       setError("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
