@@ -1,4 +1,5 @@
 {
+  /*Root TypeScript config: no direct compilation, just references sub-project configs (app and node/build tooling)*/
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

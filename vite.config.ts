@@ -1,3 +1,4 @@
+// Vite build configuration: enables React support and Tailwind CSS processing
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";

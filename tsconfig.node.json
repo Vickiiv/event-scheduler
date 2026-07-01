@@ -1,4 +1,5 @@
 {
+  /*TypeScript config for Node-side tooling (e.g. vite.config.ts), separate from the app config*/
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "es2023",
