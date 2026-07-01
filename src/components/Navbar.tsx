@@ -3,10 +3,12 @@ import { Link } from "react-router";
 import { useNavigate } from "react-router";
 
 function Navbar() {
+  // Check if the user is logged in based on a stored auth token
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Clears auth data and redirects to the login page
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");

@@ -3,11 +3,14 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router";
 
 function Login() {
+  // Form field state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // Error message shown on failed login
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Submits login credentials, stores the token/user on success, and redirects home
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");

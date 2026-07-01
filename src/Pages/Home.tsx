@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 
+// Landing page with a background image and two call-to-action buttons
 function Home() {
   const navigate = useNavigate();
 

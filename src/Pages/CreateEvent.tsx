@@ -2,15 +2,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 function CreateEvent() {
+  // Form field state
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  // Error message shown on failed submission
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Sends the new event to the API and redirects to the events list on success
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");

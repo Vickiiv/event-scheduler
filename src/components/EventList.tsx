@@ -3,9 +3,11 @@ import type { EventItem } from "../types/event";
 import { Link } from "react-router";
 
 function EventList() {
+  // List of events fetched from the API
   const [events, setEvents] = useState<EventItem[]>([]);
   const [error, setError] = useState("");
 
+  // Fetches events from the backend and updates state
   const ladeEvents = async () => {
     setError("");
     try {
@@ -19,12 +21,14 @@ function EventList() {
     }
   };
 
+  // Load events once when the component mounts
   useEffect(() => {
     ladeEvents();
   }, []);
 
   return (
     <div className="mt-30 flex flex-col p-6">
+      {/* Show an error message if fetching events failed */}
       {error && (
         <p className="text-center text-red-800 font-bold text-xl">{error}</p>
       )}

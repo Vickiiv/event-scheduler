@@ -5,6 +5,7 @@ function EditEvent() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Form field state, pre-filled with the existing event's data
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -13,6 +14,7 @@ function EditEvent() {
   const [longitude, setLongitude] = useState("");
   const [error, setError] = useState("");
 
+  // Load the existing event's data when the component mounts (or id changes)
   useEffect(() => {
     const ladeEvent = async () => {
       const response = await fetch(`http://localhost:3001/api/events/${id}`);
@@ -28,6 +30,7 @@ function EditEvent() {
     ladeEvent();
   }, [id]);
 
+  // Sends the updated event data to the API and redirects to the event's detail page
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");

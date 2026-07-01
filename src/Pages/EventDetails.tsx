@@ -7,10 +7,12 @@ function EventDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // The event being displayed, null while still loading
   const [event, setEvent] = useState<EventItem | null>(null);
   const userString = localStorage.getItem("user");
   const user = userString ? JSON.parse(userString) : null;
 
+  // Load the event details when the component mounts (or id changes)
   useEffect(() => {
     const ladeEvent = async () => {
       const response = await fetch(`http://localhost:3001/api/events/${id}`);
@@ -21,6 +23,7 @@ function EventDetails() {
     ladeEvent();
   }, [id]);
 
+  // Deletes the event and redirects back to the events list
   const handleDelete = async () => {
     const token = localStorage.getItem("token");
     await fetch(`http://localhost:3001/api/events/${id}`, {
