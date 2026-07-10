@@ -28,7 +28,6 @@ function Login() {
       }
 
       const data = await response.json();
-      console.log(data);
       const token = data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(data.user));

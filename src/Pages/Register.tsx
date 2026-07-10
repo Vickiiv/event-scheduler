@@ -28,12 +28,12 @@ function Register() {
         return;
       }
 
-      const data = await response.json();
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      // const data = await response.json();
+      // localStorage.setItem("token", data.token);
+      // localStorage.setItem("user", JSON.stringify(data.user));
       setEmail("");
       setPassword("");
-      navigate("/");
+      navigate("/login");
     } catch {
       setError("Server nicht erreichbar. Bitte später erneut versuchen.");
     }
